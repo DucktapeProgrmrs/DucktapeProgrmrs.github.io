@@ -1,1 +1,68 @@
-<div> <h2>Calculate </h2> <div class=jumbotron> <div class=container> <h1>Grade Calculator</h1> <h3>Just enter your Grades and find out how your doing.</h3><br><br> <div class=row> <div class="col-xs-7 col-md-7"> <div class="input-group input-group-lg"> <span class=input-group-addon id=groessen-addon1>Name</span> <input type=text class=form-control placeholder=Modulname ng-model=ModulName aria-describedby=groessen-addon1> </div> </div> <div class="col-xs-4 col-md-2"> <div class="input-group input-group-lg"> <span class=input-group-addon id=groessen-addon1>CP</span> <input type=text class=form-control ng-model=ModulCp aria-describedby=groessen-addon1> </div> </div> <div class="col-xs-4 col-md-2"> <div class="input-group input-group-lg"> <span class=input-group-addon id=groessen-addon1>Gr</span> <input type=text class=form-control ng-model=ModulNote aria-describedby=groessen-addon1> </div> </div> <div class="col-xs-1 col-md-1"> <button type=button class="btn btn-default btn-lg" ng-click=addModul()> <span class="glyphicon glyphicon-plus" aria-hidden=true></span> </button> </div> </div> </div> </div> <div class=jumbtron> <table class="table table-hover"> <tbody> <tr> <td><h3>Modulname</h3></td> <td><h3>CP</h3></td> <td><h3>Grade</h3></td> </tr> <tr ng-repeat="modul in alleModule" ng-click=showDeleteButton()> <td><h4>{{modul.name}}</h4></td> <td><h4>{{modul.cp}}</h4></td> <td><h4>{{modul.note}}</h4> </td> <td ng-click=deleteModul(modul)><button type=button class="btn btn-danger">X</button></td> </tr> <tr class=danger> <td><h4>Average Grade</h4></td> <td></td> <td><h4>{{gesamtNote}}</h4></td> <td></td> </tr> </tbody> </table> </div> </div> 
+<div>
+    <h2>Calculate </h2>
+    <div class=jumbotron>
+        <div class=container>
+            <h1>Grade Calculator</h1>
+            <h3>Just enter your Grades and find out how your doing.</h3>
+            <br>
+            <br>
+            <div class=row>
+                <div class="col-xs-7 col-md-7">
+                    <div class="input-group input-group-lg"> <span class=input-group-addon id=groessen-addon1>Name</span>
+                        <input type=text class=form-control placeholder=Modulname ng-model=ModulName aria-describedby=groessen-addon1> </div>
+                </div>
+                <div class="col-xs-4 col-md-2">
+                    <div class="input-group input-group-lg"> <span class=input-group-addon id=groessen-addon1>CP</span>
+                        <input type=text class=form-control ng-model=ModulCp aria-describedby=groessen-addon1> </div>
+                </div>
+                <div class="col-xs-4 col-md-2">
+                    <div class="input-group input-group-lg"> <span class=input-group-addon id=groessen-addon1>Gr</span>
+                        <input type=text class=form-control ng-model=ModulNote aria-describedby=groessen-addon1> </div>
+                </div>
+                <div class="col-xs-1 col-md-1">
+                    <button type=button class="btn btn-default btn-lg" ng-click=addModul()> <span class="glyphicon glyphicon-plus" aria-hidden=true></span> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=jumbtron>
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <td>
+                        <h3>Modulname</h3>
+                    </td>
+                    <td>
+                        <h3>CP</h3>
+                    </td>
+                    <td>
+                        <h3>Grade</h3>
+                    </td>
+                </tr>
+                <tr ng-repeat="modul in alleModule" ng-click=showDeleteButton()>
+                    <td>
+                        <h4>{{modul.name}}</h4>
+                    </td>
+                    <td>
+                        <h4>{{modul.cp}}</h4>
+                    </td>
+                    <td>
+                        <h4>{{modul.note}}</h4> </td>
+                    <td ng-click=deleteModul(modul)>
+                        <button type=button class="btn btn-danger">X</button>
+                    </td>
+                </tr>
+                <tr class=danger>
+                    <td>
+                        <h4>Average Grade</h4>
+                    </td>
+                    <td></td>
+                    <td>
+                        <h4>{{gesamtNote}}</h4>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

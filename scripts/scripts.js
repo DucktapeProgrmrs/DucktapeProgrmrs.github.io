@@ -40,7 +40,13 @@ angular.module("yapp", ["ui.router", "ngAnimate"]).config(["$stateProvider", "$u
             templateUrl: "views/dashboard/uploader.html",
             controller: "UplDoCtrl"
         })
-    }]), angular.module("yapp").controller("LoginCtrl", ["$scope", "$location", function (o, e) {
+        .state("Notenrechner", {
+            url: "/notenrechner",
+            parent: "dashboard",
+            templateUrl: "views/dashboard/NotenRechner.html",
+            controller: "NotenRechnerCtrl"
+        })
+}]), angular.module("yapp").controller("LoginCtrl", ["$scope", "$location", function (o, e) {
     o.submit = function () {
         return e.path("/dashboard"), !1
     }
@@ -89,7 +95,29 @@ angular.module("yapp", ["ui.router", "ngAnimate"]).config(["$stateProvider", "$u
         var t = e - 1;
         console.log(t), o.todos[t].complete = !0
     }
-    }]), angular.module("yapp").directive("ngEnter", function () {
+    }]), angular.module("yapp").controller("NotenRechnerCtrl", ["$scope", "$state", function (e, o) {
+    e.$state = o, e.ModulName = "", e.ModulCp = "", e.ModulNote = "", e.alleModule = [], e.gesamtNote = "", e.DeleteButton = !1, e.addModul = function () {
+        if (isNaN(e.ModulCp) || isNaN(e.ModulNote)) alert("Please do not enter Letters in the Cp or Grade Field."), e.ModulCp = "", e.ModulNote = "";
+        else if (e.ModulCp && e.ModulNote && e.ModulName) {
+            var o = new Object;
+            o.name = e.ModulName, o.cp = e.ModulCp, o.note = e.ModulNote;
+            var t = parseFloat(e.ModulCp),
+                l = parseFloat(e.ModulNote);
+            o.schnitt = t * l, e.alleModule.push(o), e.ModulName = "", e.ModulCp = "", e.ModulNote = "", e.gesamtNoteBerechnen()
+        } else alert("Please fill out all Fields.")
+    }, e.gesamtNoteBerechnen = function () {
+        e.gesamtNote = 0;
+        for (var o = 0, t = 0, l = 0; l < e.alleModule.length; l++) o = parseFloat(o) + parseFloat(e.alleModule[l].cp);
+        for (var l = 0; l < e.alleModule.length; l++) {
+            var a = parseFloat(t),
+                n = parseFloat(e.alleModule[l].schnitt);
+            t = a + n
+        }
+        e.gesamtNote = t / o, e.gesamtNote = e.gesamtNote.toFixed(2)
+    }, e.deleteModul = function (o) {
+        e.alleModule.splice(e.alleModule.indexOf(o), 1), e.gesamtNoteBerechnen()
+    }
+}]), angular.module("yapp").directive("ngEnter", function () {
     return function (o, e, t) {
         e.bind("keydown keypress", function (e) {
             13 === e.which && (o.$apply(function () {
